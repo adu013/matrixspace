@@ -31,6 +31,7 @@ matrixspace/
 ├── .gitignore      # Prevents build outputs and OS artifacts from being tracked
 ├── LICENSE         # Apache License 2.0 legal distribution text
 └── README.md       # This beautifully crafted documantation
+```
 
 ---
 
