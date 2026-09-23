@@ -1,0 +1,379 @@
+/* --- Global Resets & Layout --- */
+* {
+    box-sizing: border-box;
+}
+
+.hidden {
+    display: none !important;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 40px 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    position: relative;
+}
+
+/* --- Search Widget Styling --- */
+.search-widget {
+    padding: 15px 20px;
+}
+
+.search-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    font-family: inherit;
+    font-size: 1.5rem;
+    color: inherit;
+    letter-spacing: 2px;
+}
+
+/* Inherited theme borders for search field focusing */
+.search-input:focus {
+    outline: none;
+}
+
+/* Optional styling tweak to make the placeholder look subtle */
+.search-input::placeholder {
+    color: inherit;
+    opacity: 0.4;
+}
+
+.dashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.row {
+    display: grid;
+    gap: 20px;
+}
+
+.row-1col {
+    grid-template-columns: 1fr;
+}
+
+.row-2col {
+    grid-template-columns: 1fr 1fr;
+}
+
+.row-3col {
+    grid-template-columns: 3fr 4fr 3fr;
+}
+
+/* --- Common Component Layouts --- */
+.widget {
+    border-radius: 4px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+h2, h3 {
+    margin-top: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.1rem;
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    font-family: inherit;
+    resize: none;
+    margin-top: 10px;
+    border-radius: 2px;
+}
+
+textarea:focus, select:focus {
+    outline: none;
+}
+
+.settings-trigger {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-family: inherit;
+    border-radius: 3px;
+    z-index: 5;
+}
+
+.settings-panel {
+    position: absolute;
+    top: 55px;
+    right: 25px;
+    padding: 15px;
+    z-index: 10;
+    width: 250px;
+    border-radius: 4px;
+}
+
+.settings-panel label {
+    display: block;
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+}
+
+.settings-panel select,
+.settings-panel button {
+    display: block;
+    margin-top: 8px;
+    padding: 6px;
+    width: 100%;
+    font-family: inherit;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* ==========================================================================
+   THEME PALETTES
+   ========================================================================== */
+
+/* --- Original Theme: Matrix Midnight (matrix-classic) --- */
+body, body[data-theme="matrix-classic"] {
+    background-color: #0d0e12;
+    color: #00ff66;
+}
+body[data-theme="matrix-classic"] .widget,
+body[data-theme="matrix-classic"] .settings-trigger,
+body[data-theme="matrix-classic"] .settings-panel {
+    background-color: #141721;
+    border: 1px solid #00ff66;
+    color: #00ff66;
+    box-shadow: 0 0 10px rgba(0, 255, 102, 0.08);
+}
+body[data-theme="matrix-classic"] textarea,
+body[data-theme="matrix-classic"] select,
+body[data-theme="matrix-classic"] .settings-panel button {
+    background-color: #0d0e12;
+    border: 1px solid #00ff66;
+    color: #00ff66;
+}
+
+/* --- Theme 1: Dark Green Background / Pink Font --- */
+body[data-theme="cyber-pink"] {
+    background-color: #091f11;
+    color: #ff66cc;
+}
+body[data-theme="cyber-pink"] .widget,
+body[data-theme="cyber-pink"] .settings-trigger,
+body[data-theme="cyber-pink"] .settings-panel {
+    background-color: #0e2e1a;
+    border: 1px solid #ff66cc;
+    color: #ff66cc;
+    box-shadow: 0 0 10px rgba(255, 102, 204, 0.08);
+}
+body[data-theme="cyber-pink"] textarea,
+body[data-theme="cyber-pink"] select,
+body[data-theme="cyber-pink"] .settings-panel button {
+    background-color: #06170d;
+    border: 1px solid #ff66cc;
+    color: #ff66cc;
+}
+
+/* --- Theme 2: Dark Background / Orange Font --- */
+body[data-theme="neon-orange"] {
+    background-color: #111111;
+    color: #ff6600;
+}
+body[data-theme="neon-orange"] .widget,
+body[data-theme="neon-orange"] .settings-trigger,
+body[data-theme="neon-orange"] .settings-panel {
+    background-color: #1a1a1a;
+    border: 1px solid #ff6600;
+    color: #ff6600;
+    box-shadow: 0 0 10px rgba(255, 102, 0, 0.08);
+}
+body[data-theme="neon-orange"] textarea,
+body[data-theme="neon-orange"] select,
+body[data-theme="neon-orange"] .settings-panel button {
+    background-color: #0a0a0a;
+    border: 1px solid #ff6600;
+    color: #ff6600;
+}
+
+/* --- Theme 3: Dark Background / Neon Yellow Font --- */
+body[data-theme="neon-yellow"] {
+    background-color: #141414;
+    color: #e6ff00;
+}
+body[data-theme="neon-yellow"] .widget,
+body[data-theme="neon-yellow"] .settings-trigger,
+body[data-theme="neon-yellow"] .settings-panel {
+    background-color: #1f1f1f;
+    border: 1px solid #e6ff00;
+    color: #e6ff00;
+    box-shadow: 0 0 10px rgba(230, 255, 0, 0.08);
+}
+body[data-theme="neon-yellow"] textarea,
+body[data-theme="neon-yellow"] select,
+body[data-theme="neon-yellow"] .settings-panel button {
+    background-color: #0c0c0c;
+    border: 1px solid #e6ff00;
+    color: #e6ff00;
+}
+
+/* --- Theme 4: Light Background / Dark Font --- */
+body[data-theme="light-mode"] {
+    background-color: #f4f5f7;
+    color: #1a1a24;
+}
+body[data-theme="light-mode"] .widget,
+body[data-theme="light-mode"] .settings-trigger,
+body[data-theme="light-mode"] .settings-panel {
+    background-color: #ffffff;
+    border: 1px solid #d0d2d8;
+    color: #1a1a24;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+body[data-theme="light-mode"] textarea,
+body[data-theme="light-mode"] select,
+body[data-theme="light-mode"] .settings-panel button {
+    background-color: #fafbfc;
+    border: 1px solid #b8bac2;
+    color: #1a1a24;
+}
+
+/* --- Task Checklist Element Items --- */
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.task-item input {
+    cursor: pointer;
+    accent-color: currentColor; /* Checkbox match glowing active theme color theme */
+}
+
+/* --- High-Tech Scrollbar Rules for 5 Items Limit --- */
+.scrollable-tasks {
+    max-height: 155px; /* Sets container sizing restriction boundary */
+}
+
+/* Custom Scrollbar Styling (Adapts to Active Colors via currentColor) */
+.scrollable-tasks::-webkit-scrollbar {
+    width: 4px;
+}
+.scrollable-tasks::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+.scrollable-tasks::-webkit-scrollbar-thumb {
+    background-color: currentColor;
+    border-radius: 2px;
+}
+
+/* ==========================================================================
+   3-COLUMN LINK GROUPS WIDGET
+   ========================================================================== */
+
+/* Custom Heading Input Styling */
+.col-title-input {
+    background: transparent;
+    border: none;
+    color: inherit;
+    font-family: inherit;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    width: 100%;
+    border-bottom: 1px dashed currentColor;
+    padding-bottom: 4px;
+    margin-bottom: 12px;
+}
+
+.col-title-input:focus {
+    outline: none;
+    border-bottom: 1px solid currentColor;
+}
+
+/* Link Form Input Row Controls */
+.link-group-widget input[type="text"] {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid currentColor;
+    color: inherit;
+    font-family: inherit;
+    font-size: 0.75rem;
+    padding: 4px;
+    border-radius: 2px;
+}
+
+.link-group-widget input[type="text"]:focus {
+    outline: none;
+    box-shadow: 0 0 3px currentColor;
+}
+
+.add-link-btn {
+    background: transparent;
+    border: 1px solid currentColor;
+    color: inherit;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    border-radius: 2px;
+}
+
+.add-link-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Delete Button for Links */
+.del-link {
+    background: transparent;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    opacity: 0.6;
+    font-family: inherit;
+    transition: opacity 0.2s ease;
+}
+
+.del-link:hover {
+    opacity: 1;
+}
+
+/* ==========================================================================
+   NAVBAR BRANDING & HEADER LAYOUTS
+   ========================================================================== */
+.matrix-navbar {
+    max-width: 1200px;
+    margin: 0 auto 30px auto;
+    padding: 10px 0;
+    border-bottom: 1px dashed currentColor;
+    opacity: 0.8;
+}
+
+.nav-logo {
+    font-size: 1.1rem;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+/* Adjust dashboard max-width grid padding to flow uniformly under the header */
+.dashboard {
+    margin-top: 10px;
+}

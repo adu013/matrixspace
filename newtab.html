@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MatrixSpace</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Settings Trigger Button -->
+  <button id="settingsBtn" class="settings-trigger">⚙ Settings</button>
+
+    <!-- Brand Navbar Header Placement -->
+    <header class="matrix-navbar">
+        <div class="nav-logo">>_ MATRIXSPACE // TERMINAL_NODE</div>
+    </header>
+
+    <!-- Settings Modal -->
+    <div id="settingsPanel" class="settings-panel hidden">
+        <h3>Theme Customizer</h3>
+        <select id="themeSelector">
+            <option value="matrix-classic">Matrix Midnight</option>
+            <option value="cyber-pink">Dark Green / Pink</option>
+            <option value="neon-orange">Dark / Orange</option>
+            <option value="neon-yellow">Dark / Yellow</option>
+            <option value="light-mode">Light Mode</option>
+        </select>
+
+        <!-- New Search Provider Selector -->
+        <h3>Search Engine</h3>
+        <select id="engineSelector">
+            <option value="https://google.com">Google</option>
+            <option value="https://duckduckgo.com">DuckDuckGo</option>
+            <option value="https://bing.com">Bing</option>
+        </select>
+
+        <h3>Active Nodes</h3>
+        <label><input type="checkbox" id="toggle-search" checked> Search Module</label>
+        <label><input type="checkbox" id="toggle-clock" checked> Clock Terminal</label>
+        <label><input type="checkbox" id="toggle-status" checked> System Status Rows</label>
+        <label><input type="checkbox" id="toggle-tasks" checked> Tasks Module</label>
+        <label><input type="checkbox" id="toggle-notes" checked> Quick Notes</label>
+        <label><input type="checkbox" id="toggle-links" checked> Link Modules</label>
+
+        <button id="saveSettings">Apply & Save</button>
+    </div>
+
+    <!-- Main Dashboard Container -->
+    <div class="dashboard">
+        <div id="row-search" class="row row-1col"></div>
+        <div id="row-clock" class="row row-2col"></div>
+        <div id="row-status" class="row row-3col"></div>
+        <div id="row-links" class="row row-3col"></div>
+        <div id="row-bottom-grid" class="row row-2col"></div>
+    </div>
+
+    </div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>

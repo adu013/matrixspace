@@ -1,0 +1,23 @@
+# --- Extension Build Outputs ---
+*.zip
+*.xpi
+
+# --- Operating System Artifacts ---
+# macOS system database files
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+
+# Windows system files
+ehthumbs.db
+Log.txt
+
+# --- Editor & IDE Directories ---
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
