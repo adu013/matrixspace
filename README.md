@@ -1,6 +1,6 @@
 # ❖ MatrixSpace // TERMINAL_NODE
 
-A minimalist, privacy-focused cyberpunk dashboard that transforms the default Firefox new tab page into a responsive, secure terminal workspace. Built completely with native web APIs and Manifest V3, **MatrixSpace** operates entirely locally with zero external network dependencies.
+A minimalist, privacy-focused cyberpunk themed dashboard that transforms the default browser (Firefox, Chrome and more) new tab page into a responsive, secure terminal workspace.
 
 ---
 
