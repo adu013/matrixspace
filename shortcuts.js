@@ -101,15 +101,18 @@ export function startKeyboardShortcutEngine() {
       }
       break;
 
-    case '1':
-      const coreTab = document.querySelector('[data-target="page-core"]');
-      if (coreTab) coreTab.click();
-      break;
-
-    case '2':
-      const workTab = document.querySelector('[data-target="page-workspace"]');
-      if (workTab) workTab.click();
-      break;
+      // Dynamic Workspace Matrix Hotkey Swapping Routing Options
+      case '1':
+      case '2':
+      case '3':
+      case '4':
+        const targetDot = document.querySelector(`.page-dot[data-page="${key}"]`);
+        // Only route navigation if the target workspace exists and isn't hidden by settings
+        if (targetDot && !targetDot.classList.contains('hidden')) {
+          e.preventDefault();
+          targetDot.click();
+        }
+        break;
     }
   });
 }

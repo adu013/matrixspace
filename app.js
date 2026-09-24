@@ -31,6 +31,32 @@ function parseHTMLStringToNode(htmlString) {
     return doc.body.firstChild;
 }
 
+// --- Multi-Page Visual Switcher State Manager Engine ---
+function switchActivePage(pageNumber) {
+    document.querySelectorAll('.page-dot').forEach(dot => {
+        dot.classList.remove('active');
+        dot.textContent = '○';
+    });
+    document.querySelectorAll('.page-view').forEach(view => view.classList.add('hidden'));
+
+    const activeDot = document.querySelector(`.page-dot[data-page="${pageNumber}"]`);
+    const activeView = document.getElementById(`page-view-${pageNumber}`);
+
+    if (activeDot && activeView) {
+        activeDot.classList.add('active');
+        activeDot.textContent = '●';
+        activeView.classList.remove('hidden');
+    }
+}
+
+// Attach click listeners to page dots layout components
+document.querySelectorAll('.page-dot').forEach(dot => {
+    dot.addEventListener('click', (e) => {
+        const pageNum = e.target.getAttribute('data-page');
+        switchActivePage(pageNum);
+    });
+});
+
 // --- Render Dashboard Layout ---
 function renderDashboard(config, engineUrl) {
     const currentEngine = engineUrl || "https://google.com";
@@ -124,7 +150,7 @@ function renderDashboard(config, engineUrl) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    browser.storage.local.get(['activeTheme', 'activeFont', 'activeUiFont',  'widgetConfig', 'searchEngine']).then(res => {
+    browser.storage.local.get(['activeTheme', 'activeFont', 'activeUiFont',  'widgetConfig', 'searchEngine', 'pageConfig']).then(res => {
         const activeTheme = res.activeTheme || "matrix-classic";
         document.body.setAttribute('data-theme', activeTheme);
         if (themeSelector) themeSelector.value = activeTheme;
@@ -142,6 +168,24 @@ document.addEventListener('DOMContentLoaded', () => {
         if (res.searchEngine && engineSelector) {
             engineSelector.value = res.searchEngine;
         }
+
+        // Load custom page activation configurations profiles
+        const pageConfig = res.pageConfig || { page2: true, page3: true, page4: true };
+
+        ['2', '3', '4'].forEach(num => {
+            const isEnabled = pageConfig[`page${num}`] !== false;
+            const dot = document.getElementById(`dot-page-${num}`);
+            const check = document.getElementById(`toggle-page${num}`);
+
+            if (check) check.checked = isEnabled;
+            if (dot) {
+                if (isEnabled) dot.classList.remove('hidden');
+                else dot.classList.add('hidden');
+            }
+        });
+
+        // Always reset viewport safety down to main index primary core home layout on tab build
+        switchActivePage('1');
 
         const defaultConfig = res.widgetConfig || {
             search: true,
@@ -166,6 +210,13 @@ if (saveSettingsBtn) {
             notes: document.getElementById('toggle-notes').checked,
             tasks: document.getElementById('toggle-tasks').checked
         };
+
+        const pageConfig = {
+          page2: document.getElementById('toggle-page2').checked,
+          page3: document.getElementById('toggle-page3').checked,
+          page4: document.getElementById('toggle-page4').checked
+        };
+
         const selectedTheme = themeSelector.value;
         const selectedEngine = engineSelector.value;
         const selectedFont = fontSelector.value;
@@ -180,8 +231,23 @@ if (saveSettingsBtn) {
           activeFont: selectedFont,
           activeUiFont: selectedUiFont,
           widgetConfig,
-          searchEngine: selectedEngine
+          searchEngine: selectedEngine,
+          pageConfig
         }).then(() => {
+            // Apply updates dynamically on submission close
+            ['2', '3', '4'].forEach(num => {
+              const isEnabled = pageConfig[`page${num}`];
+              const dot = document.getElementById(`dot-page-${num}`);
+              if (dot) {
+                if (isEnabled) dot.classList.remove('hidden');
+                else {
+                  dot.classList.add('hidden');
+                  // Safety fallback return index loop if actively shutting down active view container
+                  if (dot.classList.contains('active')) switchActivePage('1');
+                }
+              }
+            });
+
             renderDashboard(widgetConfig, selectedEngine);
             settingsPanel.classList.add('hidden');
         });

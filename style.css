@@ -444,3 +444,44 @@ body[data-font="font-digital"] #pomo-input-wrapper span {
 body[data-ui-font="ui-developer"] {
     font-family: 'JetBrains Mono', monospace !important;
 }
+
+/* ==========================================================================
+   4-PAGE MINIMAL CIRCLE PAGINATION SYSTEM
+   ========================================================================== */
+.matrix-pagination {
+    max-width: 1200px;
+    margin: -15px auto 25px auto;
+    display: flex;
+    justify-content: flex-start;
+    gap: 12px;
+}
+
+.page-dot {
+    background: transparent;
+    border: none;
+    color: inherit;
+    font-family: inherit;
+    font-size: 0.8rem;
+    cursor: pointer;
+    opacity: 0.35;
+    padding: 4px;
+    line-height: 1;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.page-dot:hover {
+    opacity: 0.7;
+    transform: scale(1.2);
+}
+
+.page-dot.active {
+    opacity: 1;
+    color: inherit;
+    transform: scale(1.1);
+}
+
+.page-view {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

@@ -12,11 +12,27 @@
 
     <!-- Brand Navbar Header Placement -->
     <header class="matrix-navbar">
-        <div class="nav-logo">>_ MATRIXSPACE // TERMINAL_NODE</div>
+        <div class="nav-logo">&gt;_ MATRIXSPACE // TERMINAL_NODE</div>
     </header>
+
+  <!-- Minimalist Circle Pagination Switcher -->
+  <div id="matrix-pagination" class="matrix-pagination">
+      <button class="page-dot active" data-page="1" title="SYS_CORE">●</button>
+      <button class="page-dot" id="dot-page-2" data-page="2" title="WORKSPACE_02">○</button>
+      <button class="page-dot" id="dot-page-3" data-page="3" title="WORKSPACE_03">○</button>
+      <button class="page-dot" id="dot-page-4" data-page="4" title="WORKSPACE_04">○</button>
+  </div>
 
     <!-- Settings Modal -->
     <div id="settingsPanel" class="settings-panel hidden">
+      <!-- Inside <div id="settingsPanel">, add these 3 checkbox selectors right above the save button -->
+      <div class="settings-section" style="margin-top: 15px; border-top: 1px dashed currentColor; padding-top: 15px;">
+        <h3>Active Workspace Matrix</h3>
+        <label style="display:block; margin-bottom:8px;"><input type="checkbox" id="toggle-page2" checked> Enable Workspace 02</label>
+        <label style="display:block; margin-bottom:8px;"><input type="checkbox" id="toggle-page3" checked> Enable Workspace 03</label>
+        <label style="display:block; margin-bottom:15px;"><input type="checkbox" id="toggle-page4" checked> Enable Workspace 04</label>
+      </div>
+
         <h3>Theme Customizer</h3>
         <select id="themeSelector">
             <option value="matrix-classic">Matrix Midnight</option>
@@ -63,12 +79,46 @@
 
     <!-- Main Dashboard Container -->
     <div class="dashboard">
+      <!-- PAGE 1: Core Dashboard Workspace -->
+      <div id="page-view-1" class="page-view">
         <div id="row-search" class="row row-1col"></div>
         <div id="row-clock" class="row row-2col"></div>
         <div id="row-status" class="row row-3col"></div>
         <div id="row-links" class="row row-3col"></div>
         <div id="row-bottom-grid" class="row row-2col"></div>
+      </div>
+
+        <!-- PAGE 2: Secondary Target Frame -->
+        <div id="page-view-2" class="page-view hidden">
+            <div class="row row-1col">
+                <div class="widget">
+                    <h3>[ WORKSPACE_NODE_02 ]</h3>
+                    <p style="opacity: 0.5; font-size: 0.9rem; margin-top: 10px;">Initializing environment parameter matrix... Standby for data injection stream.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 3: Tertiary Target Frame -->
+        <div id="page-view-3" class="page-view hidden">
+            <div class="row row-1col">
+                <div class="widget">
+                    <h3>[ WORKSPACE_NODE_03 ]</h3>
+                    <p style="opacity: 0.5; font-size: 0.9rem; margin-top: 10px;">Initializing environment parameter matrix... Standby for data injection stream.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 4: Quaternary Target Frame -->
+        <div id="page-view-4" class="page-view hidden">
+            <div class="row row-1col">
+                <div class="widget">
+                    <h3>[ WORKSPACE_NODE_04 ]</h3>
+                    <p style="opacity: 0.5; font-size: 0.9rem; margin-top: 10px;">Initializing environment parameter matrix... Standby for data injection stream.</p>
+                </div>
+            </div>
+        </div>
     </div>
+
 
     </div>
 
