@@ -45,6 +45,25 @@ export const widgetTemplates = {
                 <h3>Quick Notes</h3>
                 <textarea id="notesArea" placeholder="Type notes here... auto-saves instantly."></textarea>
              </div>`,
+  // Cyberpunk Pomodoro Sprint Timer Widget
+  pomodoro: `
+  <div class="widget" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 200px;">
+    <h3>Pomodoro Sprint</h3>
+    <div style="text-align: center; margin: 15px 0;">
+      <!-- Editable Time Fields -->
+      <div id="pomo-input-wrapper" style="font-size: 3rem; font-weight: bold; font-family: monospace; letter-spacing: 2px; display: flex; justify-content: center; align-items: center; line-height: 1;">
+        <input type="text" id="pomo-mins" value="25" maxlength="2" style="font-size: 3rem; font-weight: bold; font-family: inherit; color: inherit; background: transparent; border: none; width: 50px; text-align: right; padding: 0;">
+        <span>:</span>
+        <input type="text" id="pomo-secs" value="00" maxlength="2" style="font-size: 3rem; font-weight: bold; font-family: inherit; color: inherit; background: transparent; border: none; width: 50px; text-align: left; padding: 0;" readonly>
+      </div>
+      <div id="pomo-status" style="font-size: 0.75rem; opacity: 0.5; margin-top: 8px; text-transform: uppercase; letter-spacing: 2px;">SYSTEM IDLE</div>
+    </div>
+    <div style="display: flex; gap: 8px;">
+      <button id="pomo-start" style="flex: 1; background: transparent; border: 1px solid currentColor; color: inherit; padding: 6px; cursor: pointer; font-family: inherit; font-size: 0.8rem;">[ START ]</button>
+      <button id="pomo-reset" style="background: transparent; border: 1px solid currentColor; color: inherit; padding: 6px 12px; cursor: pointer; font-family: inherit; font-size: 0.8rem;">[ RESET ]</button>
+    </div>
+  </div>
+  `,
     tasks:  `<div class="widget" style="display: flex; flex-direction: column; max-height: 250px;">
                 <h3>System Tasks</h3>
                 <div class="task-input-container" style="display: flex; gap: 8px; margin-top: 10px;">

@@ -173,4 +173,119 @@ export function setupWidgetListeners() {
         newTaskInput.addEventListener('keypress', e => { if (e.key === 'Enter') addT(); });
         loadTasks();
     }
+
+  // --- Cyberpunk Pomodoro Focus Timer Logic (Editable with memory) ---
+  const pomoMinsInput = document.getElementById('pomo-mins');
+  const pomoSecsInput = document.getElementById('pomo-secs');
+  const pomoStatus = document.getElementById('pomo-status');
+  const pomoStartBtn = document.getElementById('pomo-start');
+  const pomoResetBtn = document.getElementById('pomo-reset');
+
+  if (pomoMinsInput && pomoSecsInput && pomoStatus && pomoStartBtn && pomoResetBtn) {
+    let timerInterval = null;
+    let timeRemaining = 25 * 60;
+    let isRunning = false;
+
+    // Memory node to cache your last chosen custom timeframe profile
+    let lastUserSessionMins = "25";
+
+    function updateTimerDisplay() {
+      const minutes = Math.floor(timeRemaining / 60).toString().padStart(2, '0');
+      const seconds = (timeRemaining % 60).toString().padStart(2, '0');
+      pomoMinsInput.value = minutes;
+      pomoSecsInput.value = seconds;
+    }
+
+    function setTimeFromInputs() {
+      let parsedMins = parseInt(pomoMinsInput.value, 10);
+      if (isNaN(parsedMins) || parsedMins < 0) parsedMins = 0;
+      if (parsedMins > 99) parsedMins = 99; // Cap ceiling at 99 mins
+
+      const standardString = parsedMins.toString().padStart(2, '0');
+      pomoMinsInput.value = standardString;
+      timeRemaining = parsedMins * 60;
+
+      // Only update session memory if value is valid and more than zero
+      if (parsedMins > 0) {
+          lastUserSessionMins = standardString;
+      }
+    }
+
+    pomoMinsInput.addEventListener('change', () => {
+      if (!isRunning) setTimeFromInputs();
+    });
+
+    pomoMinsInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        pomoMinsInput.blur();
+        pomoStartBtn.click();
+      }
+    });
+
+    function startTimer() {
+      pomoMinsInput.readOnly = true;
+      pomoMinsInput.style.cursor = 'default';
+
+      timerInterval = setInterval(() => {
+        if (timeRemaining > 0) {
+          timeRemaining--;
+          updateTimerDisplay();
+        } else {
+          clearInterval(timerInterval);
+          timerInterval = null;
+          isRunning = false;
+          pomoStatus.textContent = "SPRINT COMPLETE";
+          pomoStartBtn.textContent = "[ START ]";
+          pomoMinsInput.readOnly = false;
+          pomoMinsInput.style.cursor = 'text';
+
+          // Native audio system chime beep
+          const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          const osc = audioCtx.createOscillator();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(880, audioCtx.currentTime);
+          osc.connect(audioCtx.destination);
+          osc.start();
+          osc.stop(audioCtx.currentTime + 0.3);
+        }
+      }, 1000);
+    }
+
+    pomoStartBtn.addEventListener('click', () => {
+      if (isRunning) {
+        // Handle Pause State
+        clearInterval(timerInterval);
+        timerInterval = null;
+        isRunning = false;
+        pomoStatus.textContent = "SPRINT PAUSED";
+        pomoStartBtn.textContent = "[ RESUME ]";
+        pomoMinsInput.readOnly = false;
+        pomoMinsInput.style.cursor = 'text';
+      } else {
+        // Lock and cache the typed target right before starting the timer cycle
+        setTimeFromInputs();
+
+        isRunning = true;
+        pomoStatus.textContent = "CORE SPRINT ACTIVE";
+        pomoStartBtn.textContent = "[ PAUSE ]";
+        startTimer();
+      }
+    });
+
+    pomoResetBtn.addEventListener('click', () => {
+      clearInterval(timerInterval);
+      timerInterval = null;
+      isRunning = false;
+      pomoMinsInput.readOnly = false;
+      pomoMinsInput.style.cursor = 'text';
+
+      // Restores the exact custom timestamp
+      pomoMinsInput.value = lastUserSessionMins;
+      pomoSecsInput.value = "00";
+      timeRemaining = parseInt(lastUserSessionMins, 10) * 60;
+
+      pomoStatus.textContent = "SYSTEM IDLE";
+      pomoStartBtn.textContent = "[ START ]";
+    });
+  }
 }

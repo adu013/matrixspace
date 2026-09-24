@@ -28,6 +28,7 @@ matrixspace/
 ├── config.js       # HTML component blueprints & raw markup definitions
 ├── widgets.js      # System, network, quotes, & task calculation algorithms
 ├── links.js        # 3-Column CRUD link group rendering scripts
+├── shortcuts.js    # Vim-style keyboard navigation shortcut maps
 ├── .gitignore      # Prevents build outputs and OS artifacts from being tracked
 ├── LICENSE         # Apache License 2.0 legal distribution text
 └── README.md       # This beautifully crafted documantation

@@ -377,3 +377,15 @@ body[data-theme="light-mode"] .settings-panel button {
 .dashboard {
     margin-top: 10px;
 }
+
+/* --- Glowing Link Shortcut Indicator Tweaks --- */
+a:hover .shortcut-hint {
+    opacity: 0.85 !important;
+    color: inherit;
+}
+
+/* Remove highlighting outlines from the editable countdown timer */
+#pomo-mins:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.05);
+}

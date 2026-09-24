@@ -1,9 +1,14 @@
+// Universal API mapping compatibility layer for Chrome execution support
+globalThis.browser = globalThis.browser || globalThis.chrome;
+
 import { getSearchTemplate, widgetTemplates } from './config.js';
 import { setupWidgetListeners, startClockEngine } from './widgets.js';
+import { startKeyboardShortcutEngine } from './shortcuts.js';
 import { renderLinkGroups } from './links.js';
 
-// --- Fire the master clock initialization loop hook ---
+// --- Fire Master Configuration System Loops ---
 startClockEngine();
+startKeyboardShortcutEngine();
 
 const settingsBtn = document.getElementById('settingsBtn');
 const settingsPanel = document.getElementById('settingsPanel');
@@ -72,6 +77,7 @@ function renderDashboard(config, engineUrl) {
     // Render Bottom Grid (Notes & Tasks)
     const bottomGrid = document.getElementById('row-bottom-grid');
     const notesEnabled = config['notes'] !== false;
+    const pomoEnabled = config['pomdoro'] !== false;
     const tasksEnabled = config['tasks'] !== false;
 
     const notesCheckbox = document.getElementById('toggle-notes');
@@ -82,14 +88,23 @@ function renderDashboard(config, engineUrl) {
     if (bottomGrid) {
         bottomGrid.replaceChildren();
 
-        if (notesEnabled || tasksEnabled) {
-            bottomGrid.classList.remove('hidden');
-            bottomGrid.className = (notesEnabled && tasksEnabled) ? "row row-2col" : "row row-1col";
+        if (notesEnabled || tasksEnabled || pomoEnabled) {
+          // Dynamically adjust layout columns based on how many are enabled
+          const enabledCount = [notesEnabled, pomoEnabled, tasksEnabled].filter(Boolean).length;
+          if (enabledCount === 3) bottomGrid.className = "row row-3col";
+          else if (enabledCount === 2) bottomGrid.className = "row row-2col";
+          else bottomGrid.className = "row row-1col";
 
             // Safely parse and append the notes widget if active
             if (notesEnabled) {
                 const notesNode = parseHTMLStringToNode(widgetTemplates.notes);
                 if (notesNode) bottomGrid.appendChild(notesNode);
+            }
+
+            // Safely parse and append the pomo widget if active
+            if (pomoEnabled) {
+              const pomoNode = parseHTMLStringToNode(widgetTemplates.pomodoro);
+              if (pomoNode) bottomGrid.appendChild(pomoNode);
             }
 
             // Safely parse and append the tasks widget if active

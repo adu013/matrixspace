@@ -37,6 +37,10 @@ export function renderLinkGroups() {
                 emptyMsg.textContent = 'NO EXTERNAL LINKS';
                 linksListContainer.appendChild(emptyMsg);
             } else {
+              // Map the active prefix hints based on your layout column counter positions
+              const hintPrefixes = { 'col1': 'j', 'col2': 'k', 'col3': 'l' };
+              const prefixLetter = hintPrefixes[colId] || '';
+
                 colData.items.forEach((item, idx) => {
                     const wrapper = document.createElement('div');
                     wrapper.style.cssText = 'display:flex; justify-content:space-between; align-items:center; font-size:0.9rem; margin-bottom:8px;';
@@ -45,7 +49,19 @@ export function renderLinkGroups() {
                     anchor.href = item.url;
                     anchor.target = '_blank';
                     anchor.style.cssText = 'color:inherit; text-decoration:none; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:80%; font-weight:bold;';
-                    anchor.textContent = `> ${item.name}`; // Secure text escaping
+
+                    // Securely assign the link name label text
+                    const linkTextSpan = document.createElement('span');
+                    linkTextSpan.textContent = `> ${item.name}`;
+
+                    // Inject faint visual hotkey indicators matching your Vim bindings matrix
+                    const hintSpan = document.createElement('span');
+                    hintSpan.className = 'shortcut-hint';
+                    hintSpan.textContent = `[${prefixLetter}${idx + 1}]`;
+                    hintSpan.style.cssText = 'font-size:0.7rem; opacity:0.35; font-weight:normal; font-family:inherit;'
+
+                    anchor.appendChild(linkTextSpan);
+                    anchor.appendChild(hintSpan);
 
                     const delBtn = document.createElement('button');
                     delBtn.className = 'del-link';
