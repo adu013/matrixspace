@@ -13,7 +13,9 @@ startKeyboardShortcutEngine();
 const settingsBtn = document.getElementById('settingsBtn');
 const settingsPanel = document.getElementById('settingsPanel');
 const saveSettingsBtn = document.getElementById('saveSettings');
+
 const themeSelector = document.getElementById('themeSelector');
+const fontSelector = document.getElementById('fontSelector');
 const engineSelector = document.getElementById('engineSelector');
 
 if (settingsBtn && settingsPanel) {
@@ -121,10 +123,15 @@ function renderDashboard(config, engineUrl) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    browser.storage.local.get(['activeTheme', 'widgetConfig', 'searchEngine']).then(res => {
+    browser.storage.local.get(['activeTheme', 'activeFont', 'widgetConfig', 'searchEngine']).then(res => {
         const activeTheme = res.activeTheme || "matrix-classic";
         document.body.setAttribute('data-theme', activeTheme);
         if (themeSelector) themeSelector.value = activeTheme;
+
+        // Apply saved custom typography layout state
+        const activeFont = res.activeFont || "font-default";
+        document.body.setAttribute('data-font', activeFont);
+        if (fontSelector) fontSelector.value = activeFont;
 
         if (res.searchEngine && engineSelector) {
             engineSelector.value = res.searchEngine;
@@ -155,8 +162,17 @@ if (saveSettingsBtn) {
         };
         const selectedTheme = themeSelector.value;
         const selectedEngine = engineSelector.value;
+        const selectedFont = fontSelector.value;
+
         document.body.setAttribute('data-theme', selectedTheme);
-        browser.storage.local.set({ activeTheme: selectedTheme, widgetConfig, searchEngine: selectedEngine }).then(() => {
+        document.body.setAttribute('data-font', selectedFont);
+
+        browser.storage.local.set({
+          activeTheme: selectedTheme,
+          activeFont: selectedFont,
+          widgetConfig,
+          searchEngine: selectedEngine
+        }).then(() => {
             renderDashboard(widgetConfig, selectedEngine);
             settingsPanel.classList.add('hidden');
         });

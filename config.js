@@ -52,9 +52,9 @@ export const widgetTemplates = {
     <div style="text-align: center; margin: 15px 0;">
       <!-- Editable Time Fields -->
       <div id="pomo-input-wrapper" style="font-size: 3rem; font-weight: bold; font-family: monospace; letter-spacing: 2px; display: flex; justify-content: center; align-items: center; line-height: 1;">
-        <input type="text" id="pomo-mins" value="25" maxlength="2" style="font-size: 3rem; font-weight: bold; font-family: inherit; color: inherit; background: transparent; border: none; width: 70px; text-align: right; padding: 0;">
+        <input type="text" id="pomo-mins" value="25" maxlength="2" style="font-size: 3rem; font-weight: bold; font-family: inherit; color: inherit; background: transparent; border: none; width: 90px; text-align: right; padding: 0;">
         <span>:</span>
-        <input type="text" id="pomo-secs" value="00" maxlength="2" style="font-size: 3rem; font-weight: bold; font-family: inherit; color: inherit; background: transparent; border: none; width: 70px; text-align: left; padding: 0;" readonly>
+        <input type="text" id="pomo-secs" value="00" maxlength="2" style="font-size: 3rem; font-weight: bold; font-family: inherit; color: inherit; background: transparent; border: none; width: 90px; text-align: left; padding: 0;" readonly>
       </div>
       <div id="pomo-status" style="font-size: 0.75rem; opacity: 0.5; margin-top: 8px; text-transform: uppercase; letter-spacing: 2px;">SYSTEM IDLE</div>
     </div>
