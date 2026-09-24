@@ -16,6 +16,7 @@ const saveSettingsBtn = document.getElementById('saveSettings');
 
 const themeSelector = document.getElementById('themeSelector');
 const fontSelector = document.getElementById('fontSelector');
+const uiFontSelector = document.getElementById('uiFontSelector');
 const engineSelector = document.getElementById('engineSelector');
 
 if (settingsBtn && settingsPanel) {
@@ -123,7 +124,7 @@ function renderDashboard(config, engineUrl) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    browser.storage.local.get(['activeTheme', 'activeFont', 'widgetConfig', 'searchEngine']).then(res => {
+    browser.storage.local.get(['activeTheme', 'activeFont', 'activeUiFont',  'widgetConfig', 'searchEngine']).then(res => {
         const activeTheme = res.activeTheme || "matrix-classic";
         document.body.setAttribute('data-theme', activeTheme);
         if (themeSelector) themeSelector.value = activeTheme;
@@ -132,6 +133,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const activeFont = res.activeFont || "font-default";
         document.body.setAttribute('data-font', activeFont);
         if (fontSelector) fontSelector.value = activeFont;
+
+        // Load general UI interface layout font profile selection parameters
+        const activeUiFont = res.activeUiFont || "ui-mono";
+        document.body.setAttribute('data-ui-font', activeUiFont);
+        if (uiFontSelector) uiFontSelector.value = activeUiFont;
 
         if (res.searchEngine && engineSelector) {
             engineSelector.value = res.searchEngine;
@@ -163,13 +169,16 @@ if (saveSettingsBtn) {
         const selectedTheme = themeSelector.value;
         const selectedEngine = engineSelector.value;
         const selectedFont = fontSelector.value;
+        const selectedUiFont = uiFontSelector.value;
 
         document.body.setAttribute('data-theme', selectedTheme);
         document.body.setAttribute('data-font', selectedFont);
+        document.body.setAttribute('data-ui-font', selectedUiFont);
 
         browser.storage.local.set({
           activeTheme: selectedTheme,
           activeFont: selectedFont,
+          activeUiFont: selectedUiFont,
           widgetConfig,
           searchEngine: selectedEngine
         }).then(() => {
