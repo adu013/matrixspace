@@ -70,6 +70,10 @@ body {
     grid-template-columns: 3fr 4fr 3fr;
 }
 
+.row-3col-equal-split {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
 /* --- Common Component Layouts --- */
 .widget {
     border-radius: 4px;
@@ -484,4 +488,36 @@ body[data-ui-font="ui-developer"] {
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+/* ==========================================================================
+   WORKSPACE 2 SPECIFIC HIGH-DENSITY LINK GRID STYLES
+   ========================================================================== */
+.w2-density-widget {
+    display: flex;
+    flex-direction: column;
+    max-height: 450px; /* Fixed ceiling to enforce tidy internal scrolling panels */
+}
+
+.w2-scroll-vault {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 6px;
+    margin-bottom: 12px;
+}
+
+.w2-item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+}
+
+.w2-compact-form {
+    display: flex;
+    gap: 4px;
+    margin-top: auto;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+    padding-top: 8px;
 }

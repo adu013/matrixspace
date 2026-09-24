@@ -5,6 +5,7 @@ import { getSearchTemplate, widgetTemplates } from './config.js';
 import { setupWidgetListeners, startClockEngine } from './widgets.js';
 import { startKeyboardShortcutEngine } from './shortcuts.js';
 import { renderLinkGroups } from './links.js';
+import { renderWorkspace2 } from './workspace2.js';
 
 // --- Fire Master Configuration System Loops ---
 startClockEngine();
@@ -46,6 +47,12 @@ function switchActivePage(pageNumber) {
         activeDot.classList.add('active');
         activeDot.textContent = '●';
         activeView.classList.remove('hidden');
+
+        // Trigger the high-density layout paint loop if Workspace 2 opens
+        if (pageNumber === '2') {
+            renderWorkspace2();
+        }
+
     }
 }
 
