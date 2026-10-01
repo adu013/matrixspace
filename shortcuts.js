@@ -44,7 +44,7 @@ export function startKeyboardShortcutEngine() {
             const columns = rowLinks.querySelectorAll('.link-group-widget');
             if (columns[columnIndex]) {
               const links = columns[columnIndex].querySelectorAll('a');
-              if (links[index]) window.open(links[index].href, '_blank');
+              if (links[index]) window.open(links[index].href);
             }
           }
         }
@@ -68,7 +68,7 @@ export function startKeyboardShortcutEngine() {
           const targetColumnIndex = matrixMap[sequencePrefix];
           if (widgets[targetColumnIndex]) {
             const links = widgets[targetColumnIndex].querySelectorAll('a');
-            if (links[index]) window.open(links[index].href, '_blank');
+            if (links[index]) window.open(links[index].href);
           }
         }
       }

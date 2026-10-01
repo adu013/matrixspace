@@ -82,7 +82,6 @@ function buildLinkColumn(targetRow, masterData, colId, maxLimit, storageKey, sco
 
       const anchor = document.createElement('a');
       anchor.href = item.url;
-      anchor.target = '_blank';
       anchor.style.cssText = 'color:inherit; text-decoration:none; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:85%;';
       anchor.textContent = `> ${item.name}`;
 

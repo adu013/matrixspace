@@ -47,7 +47,6 @@ export function renderLinkGroups() {
 
           const anchor = document.createElement('a');
           anchor.href = item.url;
-          anchor.target = '_blank';
           anchor.style.cssText = 'color:inherit; text-decoration:none; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:80%; font-weight:bold;';
 
           // Securely assign the link name label text

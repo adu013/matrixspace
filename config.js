@@ -1,7 +1,7 @@
 // --- Component HTML Templates ---
 export function getSearchTemplate(engineUrl) {
   return `<div class="widget search-widget">
-                <form action="${engineUrl}" method="GET" target="_blank">
+                <form action="${engineUrl}" method="GET">
                     <input type="text" name="q" class="search-input" placeholder=">_ SEARCH THE MATRIX..." autofocus autocomplete="off">
                 </form>
             </div>`;
