@@ -66,7 +66,7 @@ document.querySelectorAll('.page-dot').forEach(dot => {
 
 // --- Render Dashboard Layout ---
 function renderDashboard(config, engineUrl) {
-  const currentEngine = engineUrl || "https://google.com";
+  const currentEngine = engineUrl || "https://google.com/search";
 
   // Render Top Rows
   ['search', 'clock', 'status'].forEach(key => {
