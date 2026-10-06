@@ -175,6 +175,38 @@ body[data-theme="matrix-classic"] .settings-panel button {
   color: #00ff66;
 }
 
+/* --- Theme 1: Matrix Muted (Low Contrast Dark Slate / Blue Muted Font) --- */
+html[data-theme="matrix-muted"],
+body[data-theme="matrix-muted"] {
+  background-color: #1a1c23;
+  color: #879bb0;
+}
+
+html[data-theme="matrix-muted"] .widget,
+html[data-theme="matrix-muted"] .settings-trigger,
+html[data-theme="matrix-muted"] .settings-panel,
+html[data-theme="matrix-muted"] .snippet-card,
+body[data-theme="matrix-muted"] .widget,
+body[data-theme="matrix-muted"] .settings-trigger,
+body[data-theme="matrix-muted"] .settings-panel,
+body[data-theme="matrix-muted"] .snippet-card {
+  background-color: #222530;
+  border: 1px solid #4a5263;
+  color: #879bb0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+html[data-theme="matrix-muted"] textarea,
+html[data-theme="matrix-muted"] select,
+html[data-theme="matrix-muted"] .settings-panel button,
+body[data-theme="matrix-muted"] textarea,
+body[data-theme="matrix-muted"] select,
+body[data-theme="matrix-muted"] .settings-panel button {
+  background-color: #1a1c23;
+  border: 1px solid #4a5263;
+  color: #879bb0;
+}
+
 /* --- Theme 1: Dark Green Background / Pink Font --- */
 body[data-theme="cyber-pink"] {
   background-color: #091f11;
