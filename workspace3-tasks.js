@@ -35,7 +35,7 @@ export function renderMatrixTasks() {
         checkbox.checked = task.completed;
         checkbox.addEventListener('change', () => {
           data[bucketId][idx].completed = checkbox.checked;
-          browser.storage.local.set({ matrixTimeTasks: data });
+          browser.storage.local.set({ matrixTimeTasks: data }).then(renderMatrixTasks);
         });
 
         const taskText = document.createElement('span');
