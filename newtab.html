@@ -106,16 +106,49 @@
       <div id="w2-row-density-links" class="row row-3col-equal-split"></div>
     </div>
 
-    <!-- PAGE 3: Tertiary Target Frame -->
+    <!-- PAGE 3: 2x3 Planning Matrix Workspace -->
     <div id="page-view-3" class="page-view hidden">
-      <div class="row row-1col">
-        <div class="widget">
-          <h3>[ WORKSPACE_NODE_03 ]</h3>
-          <p style="opacity: 0.5; font-size: 0.9rem; margin-top: 10px;">Initializing environment parameter matrix...
-            Standby for data injection stream.</p>
+      <div class="dashboard" style="gap: 20px;">
+
+        <!-- Row 1: Daily Focus -->
+        <div class="row row-2col">
+          <div class="widget" id="matrix-pane-today">
+            <h3>[ 01 // TODAY ]</h3>
+            <div class="matrix-task-bucket" id="tasks-today"></div>
+          </div>
+          <div class="widget" id="matrix-pane-nextday">
+            <h3>[ 02 // NEXT DAY ]</h3>
+            <div class="matrix-task-bucket" id="tasks-nextday"></div>
+          </div>
         </div>
+
+        <!-- Row 2: Weekly Focus -->
+        <div class="row row-2col">
+          <div class="widget" id="matrix-pane-thisweek">
+            <h3>[ 03 // THIS WEEK ]</h3>
+            <div class="matrix-task-bucket" id="tasks-thisweek"></div>
+          </div>
+          <div class="widget" id="matrix-pane-nextweek">
+            <h3>[ 04 // NEXT WEEK ]</h3>
+            <div class="matrix-task-bucket" id="tasks-nextweek"></div>
+          </div>
+        </div>
+
+        <!-- Row 3: Monthly Horizon -->
+        <div class="row row-2col">
+          <div class="widget" id="matrix-pane-thismonth">
+            <h3>[ 05 // THIS MONTH ]</h3>
+            <div class="matrix-task-bucket" id="tasks-thismonth"></div>
+          </div>
+          <div class="widget" id="matrix-pane-nextmonth">
+            <h3>[ 06 // NEXT MONTH ]</h3>
+            <div class="matrix-task-bucket" id="tasks-nextmonth"></div>
+          </div>
+        </div>
+
       </div>
     </div>
+
 
     <!-- PAGE 4: Quaternary Target Frame -->
     <div id="page-view-4" class="page-view hidden">

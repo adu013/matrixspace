@@ -6,6 +6,7 @@ import { setupWidgetListeners, startClockEngine } from './widgets.js';
 import { startKeyboardShortcutEngine } from './shortcuts.js';
 import { renderLinkGroups } from './links.js';
 import { renderWorkspace2 } from './workspace2.js';
+import { renderMatrixTasks } from './workspace3-tasks.js';
 
 // --- Fire Master Configuration System Loops ---
 startClockEngine();
@@ -53,6 +54,10 @@ function switchActivePage(pageNumber) {
       renderWorkspace2();
     }
 
+    // Trigger the task matrix layout paint loop if Workspace 3 opens
+    if (pageNumber === '3') {
+      renderMatrixTasks();
+    }
   }
 }
 
